@@ -13,9 +13,6 @@ export default async function TrabalhosPage({ params }: Props) {
 
     return (
         <main className="p-24">
-            <h1 className="text-4xl">
-                {dict.works.title}
-            </h1>
         </main>
     )
 }
