@@ -77,37 +77,39 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full flex gap-6 p-6 z-50 bg-white uppercase">
+            <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 z-50 uppercase">
+                <div className="flex gap-6">
+                    <Link
+                        href={`/${currentLocale}/trabalhos`}
+                        className={linkClass(`/${currentLocale}/trabalhos`)}
+                    >
+                        {dict.nav.works}
+                    </Link>
+
+                    <Link
+                        href={`/${currentLocale}/sobre`}
+                        className={linkClass(`/${currentLocale}/sobre`)}
+                    >
+                        {dict.nav.about}
+                    </Link>
+
+                    {isLoggedIn && (
+                        <button
+                            type="button"
+                            onClick={handleLogout}
+                            className="text-red-400 pb-1 border-b border-transparent hover:border-black transition cursor-pointer"
+                        >
+                            LOGOUT
+                        </button>
+                    )}
+                </div>
+
                 <Link
                     href={`/${currentLocale}`}
-                    className={linkClass(`/${currentLocale}`)}
+                    className="uppercase"
                 >
-                    {dict.nav.home}
+                    Pilar Salgado
                 </Link>
-
-                <Link
-                    href={`/${currentLocale}/trabalhos`}
-                    className={linkClass(`/${currentLocale}/trabalhos`)}
-                >
-                    {dict.nav.works}
-                </Link>
-
-                <Link
-                    href={`/${currentLocale}/sobre`}
-                    className={linkClass(`/${currentLocale}/sobre`)}
-                >
-                    {dict.nav.about}
-                </Link>
-
-                {isLoggedIn && (
-                    <button
-                        type="button"
-                        onClick={handleLogout}
-                        className="text-red-400 pb-1 border-b border-transparent hover:border-black transition cursor-pointer"
-                    >
-                        LOGOUT
-                    </button>
-                )}
             </nav>
 
             <Link
