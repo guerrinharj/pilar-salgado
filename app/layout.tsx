@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="pt-BR ">
-            <body style={{ fontFamily: 'SansSerifFLF, sans-serif' }}>
+            <body style={{ fontFamily: 'OCRF, sans-serif' }}>
                 {children}
             </body>
         </html>

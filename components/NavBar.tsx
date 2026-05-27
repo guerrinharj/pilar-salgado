@@ -46,7 +46,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="text-xl fixed top-0 left-0 w-full flex gap-6 p-6 z-50 bg-white">
+            <nav className="text-xl fixed top-0 left-0 w-full flex gap-6 p-6 z-50 bg-white uppercase">
                 <Link
                     href={`/${currentLocale}/trabalhos`}
                     className={linkClass(`/${currentLocale}/trabalhos`)}
