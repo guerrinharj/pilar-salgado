@@ -1,0 +1,23 @@
+{
+    "nav": {
+        "home": "Home",
+        "works": "Trabalhos",
+        "about": "Sobre"
+    },
+    "home": {
+        "title": "Pilar Salgado"
+    },
+    "works": {
+        "title": "Trabalhos",
+        "new": "Adicionar trabalho"
+    },
+    "about": {
+        "title": "Sobre"
+    },
+    "login": {
+        "title": "Login",
+        "email": "E-mail",
+        "password": "Senha",
+        "submit": "Entrar"
+    }
+}
