@@ -1,4 +1,5 @@
 import { getDictionary, Locale } from '@/lib/dictionaries'
+import AddWorkButton from '@/components/AddWorkButton'
 
 type Props = {
     params: Promise<{
@@ -13,6 +14,7 @@ export default async function TrabalhosPage({ params }: Props) {
 
     return (
         <main className="p-24">
+            <AddWorkButton />
         </main>
     )
 }

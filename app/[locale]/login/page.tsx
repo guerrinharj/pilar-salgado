@@ -1,79 +1,68 @@
-import { getDictionary, Locale } from '@/lib/dictionaries'
+'use client'
 
-type Props = {
-    params: Promise<{
-        locale: Locale
-    }>
-}
+import { useState } from 'react'
+import { useRouter, useParams } from 'next/navigation'
+import { signIn } from '@/lib/supabase/auth'
 
-export default async function LoginPage({ params }: Props) {
-    const { locale } = await params
+export default function LoginPage() {
+    const router = useRouter()
+    const params = useParams()
 
-    const dict = getDictionary(locale)
+    const locale = params.locale === 'en'
+        ? 'en'
+        : 'pt'
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        setErrorMessage('')
+
+        const { error } = await signIn(email, password)
+
+        if (error) {
+            setErrorMessage('E-mail ou senha inválidos.')
+            return
+        }
+
+        router.push(`/${locale}/trabalhos`)
+    }
 
     return (
         <main className="min-h-screen flex items-center justify-center px-6">
             <form
-                className="
-                    w-full
-                    max-w-md
-                    flex
-                    flex-col
-                    gap-6
-                "
+                onSubmit={handleSubmit}
+                className="w-full max-w-md flex flex-col gap-6"
             >
-                <div className="flex flex-col gap-2">
-                    <label className="text-sm">
-                        {dict.login.email}
-                    </label>
+                <input
+                    type="email"
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    className="border border-black px-4 py-3 bg-transparent outline-none"
+                />
 
-                    <input
-                        type="email"
-                        placeholder="email@email.com"
-                        className="
-                            border
-                            border-black
-                            px-4
-                            py-3
-                            outline-none
-                            bg-transparent
-                        "
-                    />
-                </div>
+                <input
+                    type="password"
+                    placeholder="Senha"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    className="border border-black px-4 py-3 bg-transparent outline-none"
+                />
 
-                <div className="flex flex-col gap-2">
-                    <label className="text-sm">
-                        {dict.login.password}
-                    </label>
-
-                    <input
-                        type="password"
-                        placeholder="••••••••"
-                        className="
-                            border
-                            border-black
-                            px-4
-                            py-3
-                            outline-none
-                            bg-transparent
-                        "
-                    />
-                </div>
+                {errorMessage && (
+                    <p className="text-sm">
+                        {errorMessage}
+                    </p>
+                )}
 
                 <button
                     type="submit"
-                    className="
-                        border
-                        border-black
-                        px-4
-                        py-3
-                        hover:bg-black
-                        hover:text-white
-                        transition
-                        cursor-pointer
-                    "
+                    className="border border-black px-4 py-3 hover:bg-black hover:text-white transition"
                 >
-                    {dict.login.submit}
+                    Entrar
                 </button>
             </form>
         </main>
