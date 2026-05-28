@@ -58,23 +58,23 @@ export default async function TrabalhosPage({ params }: Props) {
                             href={`/${locale}/trabalhos/${work.slug}`}
                             className="group flex flex-col gap-3"
                         >
-                            <div className="relative aspect-[4/3] border border-black overflow-hidden bg-neutral-100">
+                            <div className="relative aspect-[4/3] border border-black overflow-hidden bg-neutral-100 group-hover:border-orange-500 transition duration-500">
                                 {work.thumbnail && (
                                     <Image
                                         src={work.thumbnail}
                                         alt={title}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition duration-500"
+                                        className="object-cover"
                                     />
                                 )}
                             </div>
 
                             <div className="flex flex-col">
-                                <h2 className="uppercase">
+                                <h2 className="uppercase transition group-hover:text-orange-500">
                                     {title}
                                 </h2>
 
-                                <div className="flex gap-2 text-md opacity-70">
+                                <div className="flex gap-2 text-md">
                                     {work.cliente && (
                                         <span>
                                             {work.cliente}
