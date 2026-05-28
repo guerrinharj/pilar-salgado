@@ -87,10 +87,10 @@ export default function Navbar() {
                     </Link>
 
                     <Link
-                        href={`/${currentLocale}/sobre`}
-                        className={linkClass(`/${currentLocale}/sobre`)}
+                        href={`/${currentLocale}/contato`}
+                        className={linkClass(`/${currentLocale}/contato`)}
                     >
-                        {dict.nav.about}
+                        {dict.nav.contact}
                     </Link>
 
                     {isLoggedIn && (
@@ -106,7 +106,7 @@ export default function Navbar() {
 
                 <Link
                     href={`/${currentLocale}`}
-                    className="text-orange-600 uppercase"
+                    className="text-orange-600 uppercase hover:border-b transition"
                 >
                     Pilar Salgado
                 </Link>

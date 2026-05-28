@@ -2,7 +2,7 @@
     "nav": {
         "home": "Home",
         "works": "Trabalhos",
-        "about": "Sobre"
+        "contact": "Contato"
     },
     "home": {
         "title": "Pilar Salgado"
@@ -11,8 +11,8 @@
         "title": "Trabalhos",
         "new": "Adicionar trabalho"
     },
-    "about": {
-        "title": "Sobre"
+    "contact": {
+        "title": "Contato"
     },
     "login": {
         "title": "Login",
