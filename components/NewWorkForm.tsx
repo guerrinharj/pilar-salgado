@@ -14,13 +14,15 @@ export default function NewWorkForm({ locale }: Props) {
 
     const [nomePt, setNomePt] = useState('')
     const [nomeEn, setNomeEn] = useState('')
+    const [cliente, setCliente] = useState('')
     const [ano, setAno] = useState('')
-    const [link, setLink] = useState('')
-    const [thumbnail, setThumbnail] = useState('')
-    const [images, setImages] = useState('')
+    const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
+    const [imageFiles, setImageFiles] = useState<FileList | null>(null)
+    const [videoFiles, setVideoFiles] = useState<FileList | null>(null)
     const [creditosPt, setCreditosPt] = useState('')
     const [creditosEn, setCreditosEn] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     function generateSlug(value: string) {
         return value
@@ -49,42 +51,101 @@ export default function NewWorkForm({ locale }: Props) {
             .filter((credit) => credit.role && credit.name)
     }
 
-    function parseImages(value: string) {
-        if (!value.trim()) {
+    async function uploadFile(file: File, path: string) {
+        const { error } = await supabase.storage
+            .from('work-images')
+            .upload(path, file, {
+                upsert: true,
+            })
+
+        if (error) {
+            throw error
+        }
+
+        const { data } = supabase.storage
+            .from('work-images')
+            .getPublicUrl(path)
+
+        return data.publicUrl
+    }
+
+    async function uploadFiles(files: FileList | null, folder: string) {
+        if (!files) {
             return []
         }
 
-        return value
-            .split('\n')
-            .map((url) => url.trim())
-            .filter(Boolean)
+        const urls: string[] = []
+
+        for (const file of Array.from(files)) {
+            const extension = file.name.split('.').pop()
+            const fileName = `${crypto.randomUUID()}.${extension}`
+            const path = `${folder}/${fileName}`
+
+            const publicUrl = await uploadFile(file, path)
+
+            urls.push(publicUrl)
+        }
+
+        return urls
     }
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
+
         setErrorMessage('')
+        setIsSubmitting(true)
 
-        const slug = generateSlug(nomePt)
+        try {
+            const slug = generateSlug(nomePt)
 
-        const { error } = await supabase
-            .from('works')
-            .insert({
-                nome_pt: nomePt,
-                slug,
-                ano,
-                link,
-                thumbnail,
-                images: parseImages(images),
-                creditos_pt: parseCredits(creditosPt),
-                creditos_en: parseCredits(creditosEn),
-            })
+            let thumbnailUrl = ''
 
-        if (error) {
-            setErrorMessage(error.message)
-            return
+            if (thumbnailFile) {
+                const extension = thumbnailFile.name.split('.').pop()
+                const path = `trabalhos/${slug}/thumbnail.${extension}`
+
+                thumbnailUrl = await uploadFile(thumbnailFile, path)
+            }
+
+            const imageUrls = await uploadFiles(
+                imageFiles,
+                `trabalhos/${slug}/images`
+            )
+
+            const videoUrls = await uploadFiles(
+                videoFiles,
+                `trabalhos/${slug}/videos`
+            )
+
+            const { error } = await supabase
+                .from('works')
+                .insert({
+                    nome_pt: nomePt,
+                    nome_en: nomeEn,
+                    slug,
+                    ano,
+                    cliente,
+                    thumbnail: thumbnailUrl,
+                    images: imageUrls,
+                    videos: videoUrls,
+                    creditos_pt: parseCredits(creditosPt),
+                    creditos_en: parseCredits(creditosEn),
+                })
+
+            if (error) {
+                throw error
+            }
+
+            router.push(`/${locale}/trabalhos/${slug}`)
+        } catch (error) {
+            if (error instanceof Error) {
+                setErrorMessage(error.message)
+            } else {
+                setErrorMessage('Erro ao criar trabalho.')
+            }
+        } finally {
+            setIsSubmitting(false)
         }
-
-        router.push(`/${locale}/trabalhos/${slug}`)
     }
 
     return (
@@ -99,39 +160,78 @@ export default function NewWorkForm({ locale }: Props) {
             <input
                 value={nomePt}
                 onChange={(event) => setNomePt(event.target.value)}
-                placeholder="Nome"
+                placeholder="Nome PT"
                 className="border border-black px-4 py-3 bg-transparent"
                 required
             />
 
+            <input
+                value={nomeEn}
+                onChange={(event) => setNomeEn(event.target.value)}
+                placeholder="Nome EN"
+                className="border border-black px-4 py-3 bg-transparent"
+            />
+
+            <input
+                value={cliente}
+                onChange={(event) => setCliente(event.target.value)}
+                placeholder={locale === 'pt' ? 'Cliente' : 'Client'}
+                className="border border-black px-4 py-3 bg-transparent"
+            />
 
             <input
                 value={ano}
                 onChange={(event) => setAno(event.target.value)}
-                placeholder="Ano"
+                placeholder={locale === 'pt' ? 'Ano' : 'Year'}
                 className="border border-black px-4 py-3 bg-transparent"
             />
 
-            <input
-                value={link}
-                onChange={(event) => setLink(event.target.value)}
-                placeholder="Link"
-                className="border border-black px-4 py-3 bg-transparent"
-            />
+            <div className="flex flex-col gap-2">
+                <label>
+                    Thumbnail
+                </label>
 
-            <input
-                value={thumbnail}
-                onChange={(event) => setThumbnail(event.target.value)}
-                placeholder="Thumbnail URL"
-                className="border border-black px-4 py-3 bg-transparent"
-            />
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) =>
+                        setThumbnailFile(event.target.files?.[0] ?? null)
+                    }
+                    className="border border-black px-4 py-3 bg-transparent"
+                />
+            </div>
 
-            <textarea
-                value={images}
-                onChange={(event) => setImages(event.target.value)}
-                placeholder="Images URLs, uma por linha"
-                className="border border-black px-4 py-3 bg-transparent min-h-32"
-            />
+            <div className="flex flex-col gap-2">
+                <label>
+                    {locale === 'pt' ? 'Imagens' : 'Images'}
+                </label>
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(event) =>
+                        setImageFiles(event.target.files)
+                    }
+                    className="border border-black px-4 py-3 bg-transparent"
+                />
+            </div>
+
+            <div className="flex flex-col gap-2">
+                <label>
+                    {locale === 'pt' ? 'Vídeos' : 'Videos'}
+                </label>
+
+                <input
+                    type="file"
+                    accept="video/*"
+                    multiple
+                    onChange={(event) =>
+                        setVideoFiles(event.target.files)
+                    }
+                    className="border border-black px-4 py-3 bg-transparent"
+                />
+            </div>
 
             <textarea
                 value={creditosPt}
@@ -155,9 +255,16 @@ export default function NewWorkForm({ locale }: Props) {
 
             <button
                 type="submit"
-                className="border border-black px-4 py-3 hover:bg-black hover:text-white transition"
+                disabled={isSubmitting}
+                className="border border-black px-4 py-3 hover:bg-black hover:text-white transition disabled:opacity-50"
             >
-                {locale === 'pt' ? 'Criar trabalho' : 'Create work'}
+                {isSubmitting
+                    ? locale === 'pt'
+                        ? 'Criando...'
+                        : 'Creating...'
+                    : locale === 'pt'
+                        ? 'Criar trabalho'
+                        : 'Create work'}
             </button>
         </form>
     )
