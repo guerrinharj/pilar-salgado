@@ -1,5 +1,6 @@
 import WorkCarousel from '@/components/WorkCarousel'
 import EditWorkButton from '@/components/EditWorkButton'
+import DeleteWorkButton from '@/components/DeleteWorkButton'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { Locale } from '@/lib/dictionaries'
@@ -120,10 +121,17 @@ export default async function WorkPage({ params }: Props) {
                         </div>
                     )}
 
-                    <EditWorkButton
-                        locale={locale}
-                        slug={work.slug}
-                    />
+                    <div className="flex gap-4">
+                        <EditWorkButton
+                            locale={locale}
+                            slug={work.slug}
+                        />
+
+                        <DeleteWorkButton
+                            locale={locale}
+                            workId={work.id}
+                        />
+                    </div>
                 </div>
 
                 <div>
