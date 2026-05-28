@@ -30,7 +30,7 @@ export default async function TrabalhosPage({ params }: Props) {
     const { data: works, error } = await supabase
         .from('works')
         .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en')
-        .order('created_at', { ascending: false })
+        .order('ano', { ascending: false })
         .returns<Work[]>()
 
     if (error) {
