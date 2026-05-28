@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import WorkCarousel from '@/components/WorkCarousel'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { Locale } from '@/lib/dictionaries'
@@ -52,16 +52,37 @@ export default async function WorkPage({ params }: Props) {
             ? work.creditos_pt
             : work.creditos_en || work.creditos_pt
 
+    const mediaItems = [
+        ...(work.thumbnail
+            ? [
+                {
+                    type: 'image' as const,
+                    src: work.thumbnail,
+                },
+            ]
+            : []),
+
+        ...(work.images || []).map((image) => ({
+            type: 'image' as const,
+            src: image,
+        })),
+
+        ...(work.videos || []).map((video) => ({
+            type: 'video' as const,
+            src: video,
+        })),
+    ]
+
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="flex flex-col gap-4">
-                    <h1 className="text-5xl uppercase">
+                    <h1 className="text-5xl">
                         {title}
                     </h1>
 
                     {work.cliente && (
-                        <p>
+                        <p className="text-3xl">
                             {work.cliente}
                         </p>
                     )}
@@ -76,7 +97,7 @@ export default async function WorkPage({ params }: Props) {
                         <div className="flex flex-col gap-2 pt-6">
                             {credits.map((credit, index) => (
                                 <p key={index}>
-                                    <span className="uppercase">
+                                    <span className="font-queens-italic">
                                         {credit.role}
                                     </span>
                                     {': '}
@@ -87,36 +108,11 @@ export default async function WorkPage({ params }: Props) {
                     )}
                 </div>
 
-                <div className="flex flex-col gap-6">
-                    {work.thumbnail && (
-                        <Image
-                            src={work.thumbnail}
-                            alt={title}
-                            width={1200}
-                            height={800}
-                            className="w-full h-auto object-cover"
-                        />
-                    )}
-
-                    {work.images?.map((image) => (
-                        <Image
-                            key={image}
-                            src={image}
-                            alt={title}
-                            width={1200}
-                            height={800}
-                            className="w-full h-auto object-cover"
-                        />
-                    ))}
-
-                    {work.videos?.map((video) => (
-                        <video
-                            key={video}
-                            src={video}
-                            controls
-                            className="w-full h-auto"
-                        />
-                    ))}
+                <div>
+                    <WorkCarousel
+                        items={mediaItems}
+                        title={title}
+                    />
                 </div>
             </section>
         </main>

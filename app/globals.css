@@ -21,6 +21,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Queens';
+    src: url('/fonts/Queens.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'QueensItalic';
+    src: url('/fonts/QueensItalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -34,6 +48,8 @@
   --font-ocrf: 'OCRF', sans-serif;
   --font-weezer: 'weezer', sans-serif;
   --font-sans-serif-flf: 'SansSerifFLF', sans-serif;
+  --font-queens: 'Queens', serif;
+  --font-queens-italic: 'Queens Italic', serif;
 
 }
 

@@ -77,7 +77,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 z-50 uppercase">
+            <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 z-50">
                 <div className="flex gap-6">
                     <Link
                         href={`/${currentLocale}/trabalhos`}
@@ -106,7 +106,7 @@ export default function Navbar() {
 
                 <Link
                     href={`/${currentLocale}`}
-                    className="uppercase"
+                    className=""
                 >
                     Pilar Salgado
                 </Link>

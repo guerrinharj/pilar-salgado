@@ -153,7 +153,7 @@ export default function NewWorkForm({ locale }: Props) {
             onSubmit={handleSubmit}
             className="max-w-3xl flex flex-col gap-6"
         >
-            <h1 className="text-4xl uppercase">
+            <h1 className="text-4xl">
                 {locale === 'pt' ? 'Novo trabalho' : 'New work'}
             </h1>
 
