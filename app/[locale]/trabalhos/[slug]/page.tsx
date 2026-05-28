@@ -1,4 +1,5 @@
 import WorkCarousel from '@/components/WorkCarousel'
+import EditWorkButton from '@/components/EditWorkButton'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { Locale } from '@/lib/dictionaries'
@@ -84,11 +85,17 @@ export default async function WorkPage({ params }: Props) {
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="flex flex-col gap-4">
+
+
                     {category && (
                         <span className="text-orange-500 underline">
                             {category}
                         </span>
                     )}
+
+                
+
+
                     <h1 className="uppercase text-5xl">
                         {title}
                     </h1>
@@ -112,6 +119,11 @@ export default async function WorkPage({ params }: Props) {
                             ))}
                         </div>
                     )}
+
+                    <EditWorkButton
+                        locale={locale}
+                        slug={work.slug}
+                    />
                 </div>
 
                 <div>
