@@ -13,7 +13,10 @@ type Props = {
     title: string
 }
 
-export default function WorkCarousel({ items, title }: Props) {
+export default function WorkCarousel({
+    items,
+    title,
+}: Props) {
     const [currentIndex, setCurrentIndex] = useState(0)
 
     if (items.length === 0) {
@@ -39,12 +42,12 @@ export default function WorkCarousel({ items, title }: Props) {
     }
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <div
                 className="
                     relative
-                    w-[700px]
-                    h-[500px]
+                    w-full
+                    max-w-full
                     border
                     border-black
                     bg-neutral-100
@@ -55,8 +58,14 @@ export default function WorkCarousel({ items, title }: Props) {
                     <Image
                         src={currentItem.src}
                         alt={title}
-                        fill
-                        className="object-cover"
+                        width={1600}
+                        height={1200}
+                        className="
+                            w-full
+                            h-auto
+                            object-contain
+                            block
+                        "
                     />
                 )}
 
@@ -64,7 +73,12 @@ export default function WorkCarousel({ items, title }: Props) {
                     <video
                         src={currentItem.src}
                         controls
-                        className="w-full h-full object-cover"
+                        className="
+                            w-full
+                            h-auto
+                            object-contain
+                            block
+                        "
                     />
                 )}
 
