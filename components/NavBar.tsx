@@ -70,14 +70,14 @@ export default function Navbar() {
         transition
         ${
             isActive(path)
-                ? 'border-black'
-                : 'border-transparent hover:border-black'
+                ? 'border-orange-500 text-orange-500'
+                : 'border-transparent hover:border-orange-500 hover:text-orange-500'
         }
     `
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 z-50 uppercase">
+            <nav className="fixed top-0 left-0 w-full flex items-center justify-between p-6 z-50">
                 <div className="flex gap-6">
                     <Link
                         href={`/${currentLocale}/trabalhos`}
@@ -106,7 +106,7 @@ export default function Navbar() {
 
                 <Link
                     href={`/${currentLocale}`}
-                    className="text-orange-600"
+                    className="text-orange-600 uppercase"
                 >
                     Pilar Salgado
                 </Link>
@@ -114,7 +114,7 @@ export default function Navbar() {
 
             <Link
                 href={switchedPath}
-                className="fixed bottom-6 right-6 z-50 border border-black px-4 py-2 bg-white hover:bg-black hover:text-white transition"
+                className="fixed bottom-6 right-6 z-50 border border-black px-4 py-2 bg-white hover:bg-orange-500 hover:text-white transition"
             >
                 {currentLocale === 'pt' ? 'EN' : 'PT'}
             </Link>

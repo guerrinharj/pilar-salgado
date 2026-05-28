@@ -16,6 +16,8 @@ export default function NewWorkForm({ locale }: Props) {
     const [nomeEn, setNomeEn] = useState('')
     const [cliente, setCliente] = useState('')
     const [ano, setAno] = useState('')
+    const [categoriaPt, setCategoriaPt] = useState('')
+    const [categoriaEn, setCategoriaEn] = useState('')
     const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
     const [imageFiles, setImageFiles] = useState<FileList | null>(null)
     const [videoFiles, setVideoFiles] = useState<FileList | null>(null)
@@ -124,6 +126,8 @@ export default function NewWorkForm({ locale }: Props) {
                     nome_en: nomeEn,
                     slug,
                     ano,
+                    categoriaPt,
+                    categoriaEn,
                     cliente,
                     thumbnail: thumbnailUrl,
                     images: imageUrls,
@@ -183,6 +187,20 @@ export default function NewWorkForm({ locale }: Props) {
                 value={ano}
                 onChange={(event) => setAno(event.target.value)}
                 placeholder={locale === 'pt' ? 'Ano' : 'Year'}
+                className="border border-black px-4 py-3 bg-transparent"
+            />
+
+            <input
+                value={categoriaPt}
+                onChange={(event) => setCategoriaPt(event.target.value)}
+                placeholder="Categoria PT"
+                className="border border-black px-4 py-3 bg-transparent"
+            />
+
+            <input
+                value={categoriaEn}
+                onChange={(event) => setCategoriaEn(event.target.value)}
+                placeholder="Category EN"
                 className="border border-black px-4 py-3 bg-transparent"
             />
 

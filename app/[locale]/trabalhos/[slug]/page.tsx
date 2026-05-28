@@ -13,6 +13,8 @@ type Work = {
     nome_pt: string
     nome_en: string | null
     slug: string
+    categoria_pt: string | null
+    categoria_en: string | null
     ano: string | null
     cliente: string | null
     thumbnail: string | null
@@ -52,6 +54,11 @@ export default async function WorkPage({ params }: Props) {
             ? work.creditos_pt
             : work.creditos_en || work.creditos_pt
 
+    const category =
+    locale === 'pt'
+        ? work.categoria_pt
+        : work.categoria_en || work.categoria_pt
+
     const mediaItems = [
         ...(work.thumbnail
             ? [
@@ -77,13 +84,18 @@ export default async function WorkPage({ params }: Props) {
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="flex flex-col gap-4">
+                    {category && (
+                        <span className="text-orange-500 underline">
+                            {category}
+                        </span>
+                    )}
                     <h1 className="uppercase text-5xl">
                         {title}
                     </h1>
 
                     {work.cliente && (
                         <p className="text-3xl">
-                            {work.cliente}, {work.ano}
+                            {work.cliente} <span className="text-orange-500">{work.ano}</span>
                         </p>
                     )}
 
@@ -91,7 +103,7 @@ export default async function WorkPage({ params }: Props) {
                         <div className="flex flex-col gap-2 pt-6">
                             {credits.map((credit, index) => (
                                 <p key={index}>
-                                    <span className="uppercase underline">
+                                    <span className="uppercase text-orange-500">
                                         {credit.role}
                                     </span>
                                     {': '}

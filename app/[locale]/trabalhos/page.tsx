@@ -8,6 +8,8 @@ type Work = {
     id: string
     nome_pt: string
     nome_en: string | null
+    categoria_pt: string | null
+    categoria_en: string | null
     slug: string
     ano: string | null
     cliente: string | null
@@ -27,13 +29,14 @@ export default async function TrabalhosPage({ params }: Props) {
 
     const { data: works, error } = await supabase
         .from('works')
-        .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail')
+        .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en')
         .order('created_at', { ascending: false })
         .returns<Work[]>()
 
     if (error) {
         console.error(error)
     }
+
 
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
@@ -43,6 +46,11 @@ export default async function TrabalhosPage({ params }: Props) {
                         locale === 'pt'
                             ? work.nome_pt
                             : work.nome_en || work.nome_pt
+
+                    const category =
+                        locale === 'pt'
+                            ? work.categoria_pt
+                            : work.categoria_en || work.categoria_pt
 
                     return (
                         <Link
@@ -66,15 +74,19 @@ export default async function TrabalhosPage({ params }: Props) {
                                     {title}
                                 </h2>
 
-                                <div className="flex gap-2 text-sm opacity-70">
+                                <div className="flex gap-2 text-md opacity-70">
                                     {work.cliente && (
                                         <span>
                                             {work.cliente}
                                         </span>
-                                    )}
-
-                                
+                                    )}                                
                                 </div>
+
+                                {category && (
+                                    <p className="text-orange-500 text-xs">
+                                        {category}
+                                    </p>
+                                )}  
                             </div>
                         </Link>
                     )
