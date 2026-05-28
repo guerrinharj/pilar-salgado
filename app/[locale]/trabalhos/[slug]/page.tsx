@@ -134,7 +134,7 @@ export default async function WorkPage({ params }: Props) {
                     </div>
                 </div>
 
-                <div>
+                <div className="">
                     <WorkCarousel
                         items={mediaItems}
                         title={title}
