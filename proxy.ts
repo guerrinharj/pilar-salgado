@@ -5,10 +5,12 @@ export default function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname
 
     const hasLocale =
-        pathname.startsWith('/pt') ||
-        pathname.startsWith('/en')
+        pathname === '/pt' ||
+        pathname === '/en' ||
+        pathname.startsWith('/pt/') ||
+        pathname.startsWith('/en/')
 
-    const isPublicFile = /\.(.*)$/.test(pathname)
+    const isPublicFile = pathname.includes('.')
 
     if (
         hasLocale ||
@@ -25,5 +27,5 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+    matcher: ['/((?!_next|api|favicon.ico).*)'],
 }
