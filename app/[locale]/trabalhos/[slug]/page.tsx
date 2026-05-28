@@ -77,19 +77,13 @@ export default async function WorkPage({ params }: Props) {
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="flex flex-col gap-4">
-                    <h1 className="text-5xl">
+                    <h1 className="uppercase text-5xl">
                         {title}
                     </h1>
 
                     {work.cliente && (
                         <p className="text-3xl">
-                            {work.cliente}
-                        </p>
-                    )}
-
-                    {work.ano && (
-                        <p>
-                            {work.ano}
+                            {work.cliente}, {work.ano}
                         </p>
                     )}
 
@@ -97,7 +91,7 @@ export default async function WorkPage({ params }: Props) {
                         <div className="flex flex-col gap-2 pt-6">
                             {credits.map((credit, index) => (
                                 <p key={index}>
-                                    <span className="font-queens-italic">
+                                    <span className="uppercase underline">
                                         {credit.role}
                                     </span>
                                     {': '}
