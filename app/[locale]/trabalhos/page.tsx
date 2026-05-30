@@ -11,6 +11,7 @@ type Work = {
     categoria_pt: string | null
     categoria_en: string | null
     slug: string
+    ranking: number
     ano: string | null
     cliente: string | null
     thumbnail: string | null
@@ -29,8 +30,8 @@ export default async function TrabalhosPage({ params }: Props) {
 
     const { data: works, error } = await supabase
         .from('works')
-        .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en')
-        .order('ano', { ascending: false })
+        .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en, ranking')
+        .order('ranking', { ascending: false })
         .returns<Work[]>()
 
     if (error) {
