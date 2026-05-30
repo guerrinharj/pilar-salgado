@@ -35,29 +35,35 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Switzer';
+    src: url('/fonts/Switzer.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-ocrf: 'OCRF', sans-serif;
-  --font-weezer: 'weezer', sans-serif;
-  --font-sans-serif-flf: 'SansSerifFLF', sans-serif;
-  --font-queens: 'Queens', serif;
-  --font-queens-italic: 'Queens Italic', serif;
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --font-ocrf: 'OCRF', sans-serif;
+    --font-weezer: 'weezer', sans-serif;
+    --font-sans-serif-flf: 'SansSerifFLF', sans-serif;
+    --font-queens: 'Queens', serif;
+    --font-queens-italic: 'Queens Italic', serif;
+    --font-switzer: 'Switzer', serif;
 
 }
 
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: cream;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 

@@ -100,7 +100,7 @@ export default function Navbar() {
 
                 <Link
                     href={`/${currentLocale}`}
-                    className="text-orange-600 uppercase hover:border-b transition"
+                    className="uppercase text-2xl text-white-600 hover:text-orange-600 hover:border-b transition"
                 >
                     Pilar Salgado
                 </Link>
@@ -108,7 +108,7 @@ export default function Navbar() {
 
             <Link
                 href={switchedPath}
-                className="fixed bottom-6 right-6 z-50 border border-black px-4 py-2 bg-white hover:bg-orange-500 hover:text-white transition"
+                className="fixed bottom-6 right-6 z-50 border border-white px-4 py-2 bg-black hover:bg-orange-500 hover:text-white transition"
             >
                 {currentLocale === 'pt' ? 'EN' : 'PT'}
             </Link>

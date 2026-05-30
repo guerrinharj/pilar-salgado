@@ -39,7 +39,7 @@ export default function HomeTypingTitle({ locale }: Props) {
 
     return (
         <section className="min-h-screen flex items-center justify-center px-6">
-            <h1 className="text-center text-6xl md:text-8xl leading-none">
+            <h1 className="uppercase text-center text-6xl md:text-8xl leading-none">
                 <span>
                     {firstLine}
                 </span>

@@ -70,7 +70,7 @@ export default async function TrabalhosPage({ params }: Props) {
                             </div>
 
                             <div className="flex flex-col">
-                                <h2 className="uppercase transition group-hover:text-orange-500">
+                                <h2 className="uppercase transition group-hover:text-orange-500 text-2xl">
                                     {title}
                                 </h2>
 

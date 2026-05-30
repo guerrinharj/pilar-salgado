@@ -89,7 +89,7 @@ export default async function WorkPage({ params }: Props) {
 
 
                     {category && (
-                        <span className="text-orange-500 underline">
+                        <span className="text-orange-500 ">
                             {category}
                         </span>
                     )}
@@ -97,7 +97,7 @@ export default async function WorkPage({ params }: Props) {
                 
 
 
-                    <h1 className="uppercase text-5xl">
+                    <h1 className="uppercase text-5xl underline">
                         {title}
                     </h1>
 
