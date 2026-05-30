@@ -86,12 +86,6 @@ export default function Navbar() {
                         {dict.nav.works}
                     </Link>
 
-                    <Link
-                        href={`/${currentLocale}/contato`}
-                        className={linkClass(`/${currentLocale}/contato`)}
-                    >
-                        {dict.nav.contact}
-                    </Link>
 
                     {isLoggedIn && (
                         <button
