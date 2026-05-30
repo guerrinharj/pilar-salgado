@@ -25,6 +25,7 @@ export default function NewWorkForm({ locale }: Props) {
     const [creditosEn, setCreditosEn] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [ranking, setRanking] = useState('')
 
     function generateSlug(value: string) {
         return value
@@ -129,6 +130,7 @@ export default function NewWorkForm({ locale }: Props) {
                     categoria_pt: categoriaPt,
                     categoria_en: categoriaEn,
                     cliente,
+                    ranking: ranking ? Number(ranking) : null,
                     thumbnail: thumbnailUrl,
                     images: imageUrls,
                     videos: videoUrls,
@@ -165,7 +167,7 @@ export default function NewWorkForm({ locale }: Props) {
                 value={nomePt}
                 onChange={(event) => setNomePt(event.target.value)}
                 placeholder="Nome PT"
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
                 required
             />
 
@@ -173,35 +175,43 @@ export default function NewWorkForm({ locale }: Props) {
                 value={nomeEn}
                 onChange={(event) => setNomeEn(event.target.value)}
                 placeholder="Nome EN"
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
             />
 
             <input
                 value={cliente}
                 onChange={(event) => setCliente(event.target.value)}
                 placeholder={locale === 'pt' ? 'Cliente' : 'Client'}
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
             />
 
             <input
                 value={ano}
                 onChange={(event) => setAno(event.target.value)}
                 placeholder={locale === 'pt' ? 'Ano' : 'Year'}
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
             />
 
             <input
                 value={categoriaPt}
                 onChange={(event) => setCategoriaPt(event.target.value)}
                 placeholder="Categoria PT"
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
             />
 
             <input
                 value={categoriaEn}
                 onChange={(event) => setCategoriaEn(event.target.value)}
                 placeholder="Category EN"
-                className="border border-black px-4 py-3 bg-transparent"
+                className="border border-white px-4 py-3 bg-transparent"
+            />
+
+            <input
+                type="number"
+                value={ranking}
+                onChange={(event) => setRanking(event.target.value)}
+                placeholder={locale === 'pt' ? 'Ranking' : 'Ranking'}
+                className="border border-white px-4 py-3 bg-transparent"
             />
 
             <div className="flex flex-col gap-2">
@@ -215,7 +225,7 @@ export default function NewWorkForm({ locale }: Props) {
                     onChange={(event) =>
                         setThumbnailFile(event.target.files?.[0] ?? null)
                     }
-                    className="border border-black px-4 py-3 bg-transparent"
+                    className="border border-white px-4 py-3 bg-transparent"
                 />
             </div>
 
@@ -231,7 +241,7 @@ export default function NewWorkForm({ locale }: Props) {
                     onChange={(event) =>
                         setImageFiles(event.target.files)
                     }
-                    className="border border-black px-4 py-3 bg-transparent"
+                    className="border border-white px-4 py-3 bg-transparent"
                 />
             </div>
 
@@ -247,7 +257,7 @@ export default function NewWorkForm({ locale }: Props) {
                     onChange={(event) =>
                         setVideoFiles(event.target.files)
                     }
-                    className="border border-black px-4 py-3 bg-transparent"
+                    className="border border-white px-4 py-3 bg-transparent"
                 />
             </div>
 
@@ -255,14 +265,14 @@ export default function NewWorkForm({ locale }: Props) {
                 value={creditosPt}
                 onChange={(event) => setCreditosPt(event.target.value)}
                 placeholder="Créditos PT. Ex: Direção: Nome"
-                className="border border-black px-4 py-3 bg-transparent min-h-32"
+                className="border border-white px-4 py-3 bg-transparent min-h-32"
             />
 
             <textarea
                 value={creditosEn}
                 onChange={(event) => setCreditosEn(event.target.value)}
                 placeholder="Credits EN. Ex: Director: Name"
-                className="border border-black px-4 py-3 bg-transparent min-h-32"
+                className="border border-white px-4 py-3 bg-transparent min-h-32"
             />
 
             {errorMessage && (
@@ -274,7 +284,7 @@ export default function NewWorkForm({ locale }: Props) {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="border border-black px-4 py-3 hover:bg-black hover:text-white transition disabled:opacity-50"
+                className="border border-white px-4 py-3 hover:bg-black hover:text-white transition disabled:opacity-50"
             >
                 {isSubmitting
                     ? locale === 'pt'

@@ -41,7 +41,7 @@ export default function LoginPage() {
                     placeholder="E-mail"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    className="border border-black px-4 py-3 bg-transparent outline-none"
+                    className="border border-white px-4 py-3 bg-transparent outline-none"
                 />
 
                 <input
@@ -49,7 +49,7 @@ export default function LoginPage() {
                     placeholder="Senha"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className="border border-black px-4 py-3 bg-transparent outline-none"
+                    className="border border-white px-4 py-3 bg-transparent outline-none"
                 />
 
                 {errorMessage && (
@@ -60,7 +60,7 @@ export default function LoginPage() {
 
                 <button
                     type="submit"
-                    className="border border-black px-4 py-3 hover:bg-black hover:text-white transition"
+                    className="border border-white px-4 py-3 hover:bg-black hover:text-white transition"
                 >
                     Entrar
                 </button>

@@ -47,15 +47,14 @@ export default function AddWorkButton() {
                 rounded-full
                 border
                 border-black
-                bg-white
-                text-black
+                bg-black
+                text-orange-600
                 flex
                 items-center
                 justify-center
                 text-3xl
                 leading-none
-                hover:bg-black
-                hover:text-white
+                hover:bg-white
                 transition
             "
         >
