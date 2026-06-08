@@ -22,6 +22,7 @@ type Work = {
     videos: string[] | null
     creditos_pt: Credit[] | null
     creditos_en: Credit[] | null
+    ranking: number | null
 }
 
 type Props = {
