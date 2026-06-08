@@ -15,6 +15,7 @@ export default async function HomePage({ params }: Props) {
     return (
         <main>
 
+            <div> TESTE </div>
             <HomeTypingTitle locale={locale} />
 
             <section
