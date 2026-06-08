@@ -14,9 +14,8 @@ export default async function HomePage({ params }: Props) {
 
     return (
         <main>
-            <section className="min-h-screen">
-                <HomeTypingTitle locale={locale} />
-            </section>
+
+            <HomeTypingTitle locale={locale} />
 
             <section
                 className="
