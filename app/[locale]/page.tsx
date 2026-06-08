@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import HomeTypingTitle from '@/components/HomeTypingTitle'
+import HomeTypingTitle from '../../components/HomeTypingTitle'
 import { Locale } from '@/lib/dictionaries'
 import { FaImdb } from 'react-icons/fa'
 
