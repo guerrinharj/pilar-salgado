@@ -96,13 +96,13 @@ export default function WorkCarousel({
                                 h-10
                                 rounded-full
                                 border
-                                border-black
-                                bg-white
+                                border-white
+                                bg-black
                                 flex
                                 items-center
                                 justify-center
-                                hover:bg-black
-                                hover:text-white
+                                hover:bg-white
+                                hover:text-black
                                 transition
                                 z-10
                             "
@@ -122,13 +122,13 @@ export default function WorkCarousel({
                                 h-10
                                 rounded-full
                                 border
-                                border-black
-                                bg-white
+                                border-white
+                                bg-black
                                 flex
                                 items-center
                                 justify-center
-                                hover:bg-black
-                                hover:text-white
+                                hover:bg-white
+                                hover:text-black
                                 transition
                                 z-10
                             "
