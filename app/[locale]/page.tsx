@@ -45,26 +45,37 @@ export default async function HomePage({ params }: Props) {
                         {locale === 'pt'
                             ? (
                                 <>
-                                    Pilar Salgado é uma figurinista com atuação em projetos que atravessam imagem,
-                                    identidade, narrativa e linguagem visual. Seu trabalho parte da construção de
-                                    personagens e universos visuais, explorando o figurino como ferramenta de
-                                    expressão, storytelling e direção estética.
+                                    Pilar Salgado, desde pequena, intercalou estadias fora do Brasil,
+                                    convivendo com diferentes culturas. Aos 20 anos morou em Londres,
+                                    onde desenvolveu seu interesse pela moda e pelas artes.
 
                                     <br />
                                     <br />
 
-                                    Ao longo de sua trajetória, desenvolveu projetos para cinema, televisão,
-                                    publicidade, moda e produções independentes, colaborando com diretores,
-                                    fotógrafos, artistas e marcas na criação de imagens marcantes e coerentes com
-                                    cada narrativa.
+                                    De volta ao Brasil, iniciou sua trajetória no cinema integrando a
+                                    equipe de figurino do filme <em>Cidade de Deus</em>, ao lado de Bia
+                                    Salgado.
 
                                     <br />
                                     <br />
 
-                                    Seu processo combina pesquisa, sensibilidade visual e atenção aos detalhes,
-                                    buscando traduzir conceitos, emoções e contextos através da roupa, da textura,
-                                    da cor e da composição. Cada projeto é encarado como uma oportunidade de criar
-                                    identidades únicas e fortalecer a relação entre personagem, imagem e história.{' '}
+                                    Ao longo de mais de 25 anos de carreira, consolidou-se como uma
+                                    figurinista de olhar singular, capaz de compreender profundamente os
+                                    personagens e traduzi-los para a tela com autenticidade. Seu trabalho
+                                    contribui para estabelecer o acordo tácito entre espectador e filme,
+                                    elemento essencial para a imersão e a experiência cinematográfica.
+
+                                    <br />
+                                    <br />
+
+                                    Além do cinema, assina campanhas publicitárias nacionais e
+                                    internacionais, alternando constantemente entre ficção e publicidade.
+                                    Com a expansão das plataformas de streaming, passou também a atuar em
+                                    diversas séries e longas-metragens.
+
+                                    <br />
+                                    <br />
+
                                     <a
                                         href="mailto:pilarsalgado@gmail.com"
                                         className="text-orange-600 hover:underline transition"
@@ -76,27 +87,38 @@ export default async function HomePage({ params }: Props) {
                             )
                             : (
                                 <>
-                                    Pilar Salgado is a costume designer whose work spans image-making,
-                                    identity, narrative, and visual language. Her practice is rooted in the
-                                    creation of characters and visual worlds, exploring costume as a tool for
-                                    expression, storytelling, and art direction.
+                                    Since childhood, Pilar Salgado has spent periods living outside
+                                    Brazil, experiencing different cultures. At the age of 20, she moved
+                                    to London, where she developed her passion for fashion and the arts.
 
                                     <br />
                                     <br />
 
-                                    Throughout her career, she has developed projects for film, television,
-                                    advertising, fashion, and independent productions, collaborating with
-                                    directors, photographers, artists, and brands to create distinctive and
-                                    coherent visual narratives.
+                                    After returning to Brazil, she began her career in film as part of
+                                    the costume department for <em>City of God</em>, working alongside
+                                    Bia Salgado.
 
                                     <br />
                                     <br />
 
-                                    Her process combines research, visual sensitivity, and close attention to
-                                    detail, translating concepts, emotions, and contexts through clothing,
-                                    texture, color, and composition. Each project is approached as an opportunity
-                                    to build unique identities and strengthen the relationship between character,
-                                    image, and story.{' '}
+                                    Over more than 25 years, she has established herself as a costume
+                                    designer with a distinctive perspective, bringing a deep understanding
+                                    of character to every project. Her work helps create authentic,
+                                    believable figures on screen, strengthening the unspoken bond between
+                                    audience and film that is essential to the cinematic experience.
+
+                                    <br />
+                                    <br />
+
+                                    Alongside her work in feature films, she has designed costumes for
+                                    both Brazilian and international advertising campaigns, continuously
+                                    balancing fiction and commercial productions. With the rise of
+                                    streaming platforms, her work has expanded to include numerous series
+                                    and feature-length productions.
+
+                                    <br />
+                                    <br />
+
                                     <a
                                         href="mailto:pilarsalgado@gmail.com"
                                         className="text-orange-600 hover:underline transition"
