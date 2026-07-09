@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getDictionary, Locale } from '@/lib/dictionaries'
 import { supabase } from '@/lib/supabase/client'
 import AddWorkButton from '@/components/AddWorkButton'
+import WorkReveal from '@/components/WorkReveal'
 
 type Work = {
     id: string
@@ -38,7 +39,6 @@ export default async function TrabalhosPage({ params }: Props) {
         console.error(error)
     }
 
-
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -54,42 +54,41 @@ export default async function TrabalhosPage({ params }: Props) {
                             : work.categoria_en || work.categoria_pt
 
                     return (
-                        <Link
-                            key={work.id}
-                            href={`/${locale}/trabalhos/${work.slug}`}
-                            className="group flex flex-col gap-3"
-                        >
-                            <div className="relative aspect-[4/3] border border-black overflow-hidden bg-neutral-100 group-hover:border-orange-500 transition duration-500">
-                                {work.thumbnail && (
-                                    <Image
-                                        src={work.thumbnail}
-                                        alt={title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                )}
-                            </div>
-
-                            <div className="flex flex-col">
-                                <h2 className="uppercase transition group-hover:text-orange-500 text-2xl">
-                                    {title}
-                                </h2>
-
-                                <div className="flex gap-2 text-md">
-                                    {work.cliente && (
-                                        <span>
-                                            {work.cliente}
-                                        </span>
-                                    )}                                
+                        <WorkReveal key={work.id}>
+                            <Link
+                                href={`/${locale}/trabalhos/${work.slug}`}
+                                className="group flex flex-col gap-3"
+                            >
+                                <div className="relative aspect-[4/3] border border-black overflow-hidden bg-neutral-100 group-hover:border-orange-500 transition duration-500">
+                                    {work.thumbnail && (
+                                        <Image
+                                            src={work.thumbnail}
+                                            alt={title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    )}
                                 </div>
 
-                                {category && (
-                                    <p className="text-orange-500 text-xs">
-                                        {category}
-                                    </p>
-                                )}  
-                            </div>
-                        </Link>
+                                <div className="flex flex-col">
+                                    <h2 className="uppercase transition group-hover:text-orange-500 text-2xl">
+                                        {title}
+                                    </h2>
+
+                                    <div className="flex gap-2 text-md">
+                                        {work.cliente && (
+                                            <span>{work.cliente}</span>
+                                        )}
+                                    </div>
+
+                                    {category && (
+                                        <p className="text-orange-500 text-xs">
+                                            {category}
+                                        </p>
+                                    )}
+                                </div>
+                            </Link>
+                        </WorkReveal>
                     )
                 })}
             </section>
