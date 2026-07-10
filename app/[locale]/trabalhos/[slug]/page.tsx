@@ -1,3 +1,5 @@
+import { HiArrowLeft } from 'react-icons/hi'
+import Link from 'next/link'
 import WorkCarousel from '@/components/WorkCarousel'
 import EditWorkButton from '@/components/EditWorkButton'
 import DeleteWorkButton from '@/components/DeleteWorkButton'
@@ -141,6 +143,33 @@ export default async function WorkPage({ params }: Props) {
                     />
                 </div>
             </section>
+            <Link
+                href={`/${locale}/trabalhos`}
+                aria-label="Voltar para trabalhos"
+                className="
+                    fixed
+                    bottom-8
+                    right-8
+                    z-50
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-black
+                    bg-white/80
+                    backdrop-blur-sm
+                    transition-all
+                    duration-300
+                    hover:border-orange-500
+                    hover:text-orange-500
+                    hover:bg-white
+                "
+            >
+                <HiArrowLeft className="h-6 w-6" />
+            </Link>
         </main>
     )
 }
