@@ -1,6 +1,5 @@
 import { HiArrowLeft } from 'react-icons/hi'
 import Link from 'next/link'
-import WorkCarousel from '@/components/WorkCarousel'
 import EditWorkButton from '@/components/EditWorkButton'
 import DeleteWorkButton from '@/components/DeleteWorkButton'
 import { notFound } from 'next/navigation'
@@ -59,63 +58,47 @@ export default async function WorkPage({ params }: Props) {
             : work.creditos_en || work.creditos_pt
 
     const category =
-    locale === 'pt'
-        ? work.categoria_pt
-        : work.categoria_en || work.categoria_pt
+        locale === 'pt'
+            ? work.categoria_pt
+            : work.categoria_en || work.categoria_pt
 
-    const mediaItems = [
-        ...(work.thumbnail
-            ? [
-                {
-                    type: 'image' as const,
-                    src: work.thumbnail,
-                },
-            ]
-            : []),
-
-        ...(work.images || []).map((image) => ({
-            type: 'image' as const,
-            src: image,
-        })),
-
-        ...(work.videos || []).map((video) => ({
-            type: 'video' as const,
-            src: video,
-        })),
-    ]
+    const video = work.videos?.[0]
 
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 <div className="flex flex-col gap-4">
-
-
                     {category && (
-                        <span className="text-orange-500 ">
+                        <span className="text-orange-500">
                             {category}
                         </span>
                     )}
 
-                
-
-
-                    <h1 className="uppercase text-5xl underline">
+                    <h1 className="text-5xl uppercase underline">
                         {title}
                     </h1>
 
                     {work.cliente && (
                         <p className="text-3xl">
-                            {work.cliente} <span className="text-orange-500">{work.ano}</span>
+                            {work.cliente}
+
+                            {work.ano && (
+                                <span className="text-orange-500">
+                                    {' '}
+                                    {work.ano}
+                                </span>
+                            )}
                         </p>
                     )}
 
                     {credits && credits.length > 0 && (
                         <div className="flex flex-col gap-2 pt-6">
                             {credits.map((credit, index) => (
-                                <p key={index}>
+                                <p key={`${credit.role}-${credit.name}-${index}`}>
                                     <span className="uppercase text-orange-500">
                                         {credit.role}
                                     </span>
+
                                     {': '}
                                     {credit.name}
                                 </p>
@@ -136,16 +119,37 @@ export default async function WorkPage({ params }: Props) {
                     </div>
                 </div>
 
-                <div className="">
-                    <WorkCarousel
-                        items={mediaItems}
-                        title={title}
-                    />
+                <div className="w-full max-w-[700px] mx-auto bg-black flex items-center justify-center">
+                    {video ? (
+                        <video
+                            src={video}
+                            poster={work.thumbnail || undefined}
+                            controls
+                            playsInline
+                            preload="metadata"
+                            className="h-auto w-full object-contain"
+                        >
+                            Seu navegador não suporta a reprodução de vídeos.
+                        </video>
+                    ) : (
+                        <div className="flex aspect-video w-full items-center justify-center bg-neutral-100">
+                            <p className="text-sm text-neutral-500">
+                                {locale === 'pt'
+                                    ? 'Nenhum vídeo cadastrado.'
+                                    : 'No video available.'}
+                            </p>
+                        </div>
+                    )}
                 </div>
             </section>
+
             <Link
                 href={`/${locale}/trabalhos`}
-                aria-label="Voltar para trabalhos"
+                aria-label={
+                    locale === 'pt'
+                        ? 'Voltar para trabalhos'
+                        : 'Back to works'
+                }
                 className="
                     fixed
                     bottom-8
@@ -160,6 +164,7 @@ export default async function WorkPage({ params }: Props) {
                     border
                     border-black
                     bg-black/80
+                    text-white
                     backdrop-blur-sm
                     transition-all
                     duration-300
