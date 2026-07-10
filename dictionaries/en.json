@@ -1,15 +1,15 @@
 {
     "nav": {
         "home": "Home",
-        "works": "Works",
+        "works": "Projects",
         "contact": "Contact"
     },
     "home": {
         "title": "Pilar Salgado"
     },
     "works": {
-        "title": "Works",
-        "new": "Add work"
+        "title": "Projects",
+        "new": "Add project"
     },
     "Contact": {
         "title": "Contact"

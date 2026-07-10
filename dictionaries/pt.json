@@ -1,15 +1,15 @@
 {
     "nav": {
         "home": "Home",
-        "works": "Trabalhos",
+        "works": "Projetos",
         "contact": "Contato"
     },
     "home": {
         "title": "Pilar Salgado"
     },
     "works": {
-        "title": "Trabalhos",
-        "new": "Adicionar trabalho"
+        "title": "Projeto",
+        "new": "Adicionar projeto"
     },
     "contact": {
         "title": "Contato"
