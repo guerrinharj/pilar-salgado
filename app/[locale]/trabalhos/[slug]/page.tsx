@@ -149,7 +149,7 @@ export default async function WorkPage({ params }: Props) {
                 className="
                     fixed
                     bottom-8
-                    right-8
+                    left-8
                     z-50
                     flex
                     h-12
@@ -159,13 +159,12 @@ export default async function WorkPage({ params }: Props) {
                     rounded-full
                     border
                     border-black
-                    bg-white/80
+                    bg-black/80
                     backdrop-blur-sm
                     transition-all
                     duration-300
                     hover:border-orange-500
                     hover:text-orange-500
-                    hover:bg-white
                 "
             >
                 <HiArrowLeft className="h-6 w-6" />
