@@ -79,9 +79,8 @@ export default async function HomePage({ params }: Props) {
                                         href="mailto:pilarsalgado@gmail.com"
                                         className="text-orange-600 hover:underline transition"
                                     >
-                                        pilarsalgado@gmail.com
+                                        pilarfigurino@gmail.com
                                     </a>
-                                    .
                                 </>
                             )
                             : (
@@ -122,9 +121,8 @@ export default async function HomePage({ params }: Props) {
                                         href="mailto:pilarsalgado@gmail.com"
                                         className="text-orange-600 hover:underline transition"
                                     >
-                                        pilarsalgado@gmail.com
+                                        pilarfigurino@gmail.com
                                     </a>
-                                    .
                                 </>
                             )}
                     </p>
