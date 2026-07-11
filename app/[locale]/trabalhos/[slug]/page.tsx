@@ -2,6 +2,7 @@ import { HiArrowLeft } from 'react-icons/hi'
 import Link from 'next/link'
 import EditWorkButton from '@/components/EditWorkButton'
 import DeleteWorkButton from '@/components/DeleteWorkButton'
+import FadeIn from '@/components/FadeIn'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { Locale } from '@/lib/dictionaries'
@@ -67,80 +68,96 @@ export default async function WorkPage({ params }: Props) {
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
             <section className="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <div className="flex flex-col gap-4">
-                    {category && (
-                        <span className="text-orange-500">
-                            {category}
-                        </span>
-                    )}
-
-                    <h1 className="text-5xl uppercase underline">
-                        {title}
-                    </h1>
-
-                    {work.cliente && (
-                        <p className="text-3xl">
-                            {work.cliente}
-
-                            {work.ano && (
+                <FadeIn>
+                    <div className="flex flex-col gap-4">
+                        {category && (
+                            <FadeIn delay={100}>
                                 <span className="text-orange-500">
-                                    {' '}
-                                    {work.ano}
+                                    {category}
                                 </span>
-                            )}
-                        </p>
-                    )}
+                            </FadeIn>
+                        )}
 
-                    {credits && credits.length > 0 && (
-                        <div className="flex flex-col gap-2 pt-6">
-                            {credits.map((credit, index) => (
-                                <p key={`${credit.role}-${credit.name}-${index}`}>
-                                    <span className="uppercase text-orange-500">
-                                        {credit.role}
-                                    </span>
+                        <FadeIn delay={200}>
+                            <h1 className="text-5xl uppercase underline">
+                                {title}
+                            </h1>
+                        </FadeIn>
 
-                                    {': '}
-                                    {credit.name}
+                        {work.cliente && (
+                            <FadeIn delay={300}>
+                                <p className="text-3xl">
+                                    {work.cliente}
+
+                                    {work.ano && (
+                                        <span className="text-orange-500">
+                                            {' '}
+                                            {work.ano}
+                                        </span>
+                                    )}
                                 </p>
-                            ))}
-                        </div>
-                    )}
+                            </FadeIn>
+                        )}
 
-                    <div className="flex gap-4">
-                        <EditWorkButton
-                            locale={locale}
-                            slug={work.slug}
-                        />
+                        {credits && credits.length > 0 && (
+                            <FadeIn delay={400}>
+                                <div className="flex flex-col gap-2 pt-6">
+                                    {credits.map((credit, index) => (
+                                        <p
+                                            key={`${credit.role}-${credit.name}-${index}`}
+                                        >
+                                            <span className="uppercase text-orange-500">
+                                                {credit.role}
+                                            </span>
 
-                        <DeleteWorkButton
-                            locale={locale}
-                            workId={work.id}
-                        />
+                                            {': '}
+                                            {credit.name}
+                                        </p>
+                                    ))}
+                                </div>
+                            </FadeIn>
+                        )}
+
+                        <FadeIn delay={500}>
+                            <div className="flex gap-4">
+                                <EditWorkButton
+                                    locale={locale}
+                                    slug={work.slug}
+                                />
+
+                                <DeleteWorkButton
+                                    locale={locale}
+                                    workId={work.id}
+                                />
+                            </div>
+                        </FadeIn>
                     </div>
-                </div>
+                </FadeIn>
 
-                <div className="w-full max-w-[700px] mx-auto bg-black flex items-center justify-center">
-                    {video ? (
-                        <video
-                            src={video}
-                            poster={work.thumbnail || undefined}
-                            controls
-                            playsInline
-                            preload="metadata"
-                            className="h-auto w-full object-contain"
-                        >
-                            Seu navegador não suporta a reprodução de vídeos.
-                        </video>
-                    ) : (
-                        <div className="flex aspect-video w-full items-center justify-center bg-neutral-100">
-                            <p className="text-sm text-neutral-500">
-                                {locale === 'pt'
-                                    ? 'Nenhum vídeo cadastrado.'
-                                    : 'No video available.'}
-                            </p>
-                        </div>
-                    )}
-                </div>
+                <FadeIn delay={250}>
+                    <div className="w-full max-w-[700px] mx-auto bg-black flex items-center justify-center">
+                        {video ? (
+                            <video
+                                src={video}
+                                poster={work.thumbnail || undefined}
+                                controls
+                                playsInline
+                                preload="metadata"
+                                className="h-auto w-full object-contain"
+                            >
+                                Seu navegador não suporta a reprodução de vídeos.
+                            </video>
+                        ) : (
+                            <div className="flex aspect-video w-full items-center justify-center bg-neutral-100">
+                                <p className="text-sm text-neutral-500">
+                                    {locale === 'pt'
+                                        ? 'Nenhum vídeo cadastrado.'
+                                        : 'No video available.'}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                </FadeIn>
             </section>
 
             <Link
