@@ -1,6 +1,5 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import { getDictionary, Locale } from '@/lib/dictionaries'
+import { Locale } from '@/lib/dictionaries'
 import { supabase } from '@/lib/supabase/client'
 import AddWorkButton from '@/components/AddWorkButton'
 import WorkReveal from '@/components/WorkReveal'
@@ -15,7 +14,6 @@ type Work = {
     ranking: number
     ano: string | null
     cliente: string | null
-    thumbnail: string | null
 }
 
 type Props = {
@@ -27,11 +25,11 @@ type Props = {
 export default async function TrabalhosPage({ params }: Props) {
     const { locale } = await params
 
-    const dict = getDictionary(locale)
-
     const { data: works, error } = await supabase
         .from('works')
-        .select('id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en, ranking')
+        .select(
+            'id, nome_pt, nome_en, slug, ano, cliente, categoria_pt, categoria_en, ranking'
+        )
         .order('ranking', { ascending: false })
         .returns<Work[]>()
 
@@ -41,7 +39,7 @@ export default async function TrabalhosPage({ params }: Props) {
 
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <section className="flex flex-col">
                 {(works || []).map((work) => {
                     const title =
                         locale === 'pt'
@@ -57,34 +55,83 @@ export default async function TrabalhosPage({ params }: Props) {
                         <WorkReveal key={work.id}>
                             <Link
                                 href={`/${locale}/trabalhos/${work.slug}`}
-                                className="group flex flex-col gap-3"
+                                className="
+                                    group
+                                    flex
+                                    flex-col
+                                    gap-6
+                                    border-b
+                                    border-black
+                                    py-8
+                                    transition-colors
+                                    duration-300
+                                    md:flex-row
+                                    md:items-end
+                                    md:justify-between
+                                "
                             >
-                                <div className="relative aspect-[4/3] border border-black overflow-hidden bg-neutral-100 group-hover:border-orange-500 transition duration-500">
-                                    {work.thumbnail && (
-                                        <Image
-                                            src={work.thumbnail}
-                                            alt={title}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    )}
-                                </div>
+                                <h2
+                                    className="
+                                        flex
+                                        items-center
+                                        gap-4
+                                        max-w-5xl
+                                        text-5xl
+                                        leading-[0.9]
+                                        uppercase
+                                        sm:text-6xl
+                                        md:text-7xl
+                                        lg:text-8xl
+                                    "
+                                >
+                                    <span
+                                        className="
+                                            -translate-x-6
+                                            opacity-0
+                                            transition-all
+                                            duration-500
+                                            ease-out
+                                            group-hover:translate-x-0
+                                            group-hover:opacity-100
+                                        "
+                                    >
+                                        →
+                                    </span>
 
-                                <div className="flex flex-col">
-                                    <h2 className="uppercase transition group-hover:text-orange-500 text-2xl">
+                                    <span
+                                        className="
+                                            transition-all
+                                            duration-500
+                                            ease-out
+                                            group-hover:translate-x-4
+                                            group-hover:text-orange-500
+                                        "
+                                    >
                                         {title}
-                                    </h2>
+                                    </span>
+                                </h2>
 
-                                    <div className="flex gap-2 text-md">
-                                        {work.cliente && (
-                                            <span>{work.cliente}</span>
-                                        )}
-                                    </div>
+                                <div
+                                    className="
+                                        flex
+                                        shrink-0
+                                        flex-col
+                                        items-start
+                                        text-left
+                                        md:items-end
+                                        md:text-right
+                                    "
+                                >
+                                    {work.cliente && (
+                                        <span className="text-base uppercase">
+                                            {work.cliente}
+                                        </span>
+                                    )}
 
                                     {category && (
-                                        <p className="text-orange-500 text-xs">
+                                        <span className="text-sm text-orange-500">
                                             {category}
-                                        </p>
+                                        </span>
                                     )}
                                 </div>
                             </Link>
