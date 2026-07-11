@@ -143,7 +143,12 @@ export default async function WorkPage({ params }: Props) {
                                 controls
                                 playsInline
                                 preload="metadata"
-                                className="h-auto w-full object-contain"
+                                className="
+                                    w-full
+                                    max-w-[700px]
+                                    aspect-video
+                                    object-cover
+                                "
                             >
                                 Seu navegador não suporta a reprodução de vídeos.
                             </video>
