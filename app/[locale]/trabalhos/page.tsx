@@ -72,9 +72,7 @@ export default async function TrabalhosPage({ params }: Props) {
                             >
                                 <h2
                                     className="
-                                        flex
-                                        items-center
-                                        gap-4
+                                        relative
                                         max-w-5xl
                                         text-5xl
                                         leading-[0.9]
@@ -86,12 +84,16 @@ export default async function TrabalhosPage({ params }: Props) {
                                 >
                                     <span
                                         className="
-                                            -translate-x-6
+                                            absolute
+                                            left-0
+                                            top-1/2
+                                            -translate-x-16
+                                            -translate-y-1/2
                                             opacity-0
                                             transition-all
                                             duration-500
                                             ease-out
-                                            group-hover:translate-x-0
+                                            group-hover:-translate-x-0
                                             group-hover:opacity-100
                                         "
                                     >
@@ -100,10 +102,11 @@ export default async function TrabalhosPage({ params }: Props) {
 
                                     <span
                                         className="
-                                            transition-all
+                                            block
+                                            transition-transform
                                             duration-500
                                             ease-out
-                                            group-hover:translate-x-4
+                                            group-hover:translate-x-24
                                             group-hover:text-orange-500
                                         "
                                     >
