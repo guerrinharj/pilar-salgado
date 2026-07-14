@@ -92,7 +92,7 @@ export default async function TrabalhosPage({ params }: Props) {
                                     <div className="flex min-w-0 flex-col">
                                         <h2
                                             className="
-                                                text-2xl
+                                                text-xl
                                                 leading-tight
                                                 uppercase
                                                 transition-colors
