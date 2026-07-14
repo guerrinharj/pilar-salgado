@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Locale } from '@/lib/dictionaries'
 import { supabase } from '@/lib/supabase/client'
@@ -14,6 +15,7 @@ type Work = {
     ranking: number
     ano: string | null
     cliente: string | null
+    thumbnail: string | null
 }
 
 type Props = {
@@ -28,7 +30,7 @@ export default async function TrabalhosPage({ params }: Props) {
     const { data: works, error } = await supabase
         .from('works')
         .select(
-            'id, nome_pt, nome_en, slug, ano, cliente, categoria_pt, categoria_en, ranking'
+            'id, nome_pt, nome_en, slug, ano, cliente, thumbnail, categoria_pt, categoria_en, ranking'
         )
         .order('ranking', { ascending: false })
         .returns<Work[]>()
@@ -39,7 +41,7 @@ export default async function TrabalhosPage({ params }: Props) {
 
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
-            <section className="flex flex-col">
+            <section className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 {(works || []).map((work) => {
                     const title =
                         locale === 'pt'
@@ -55,84 +57,61 @@ export default async function TrabalhosPage({ params }: Props) {
                         <WorkReveal key={work.id}>
                             <Link
                                 href={`/${locale}/trabalhos/${work.slug}`}
-                                className="
-                                    group
-                                    flex
-                                    flex-col
-                                    gap-6
-                                    border-b
-                                    border-black
-                                    py-8
-                                    transition-colors
-                                    duration-300
-                                    md:flex-row
-                                    md:items-end
-                                    md:justify-between
-                                "
+                                className="group flex flex-col gap-4"
                             >
-                                <h2
-                                    className="
-                                        relative
-                                        max-w-5xl
-                                        text-5xl
-                                        leading-[0.9]
-                                        uppercase
-                                        sm:text-6xl
-                                        md:text-7xl
-                                        lg:text-8xl
-                                    "
-                                >
-                                    <span
-                                        className="
-                                            absolute
-                                            left-0
-                                            top-1/2
-                                            -translate-x-16
-                                            -translate-y-1/2
-                                            opacity-0
-                                            transition-all
-                                            duration-500
-                                            ease-out
-                                            group-hover:-translate-x-0
-                                            group-hover:opacity-100
-                                        "
-                                    >
-                                        →
-                                    </span>
-
-                                    <span
-                                        className="
-                                            block
-                                            transition-transform
-                                            duration-500
-                                            ease-out
-                                            group-hover:translate-x-24
-                                            group-hover:text-orange-500
-                                        "
-                                    >
-                                        {title}
-                                    </span>
-                                </h2>
-
                                 <div
                                     className="
-                                        flex
-                                        shrink-0
-                                        flex-col
-                                        items-start
-                                        text-left
-                                        md:items-end
-                                        md:text-right
+                                        relative
+                                        aspect-[4/3]
+                                        overflow-hidden
+                                        bg-neutral-100
                                     "
                                 >
-                                    {work.cliente && (
-                                        <span className="text-base uppercase">
-                                            {work.cliente}
-                                        </span>
+                                    {work.thumbnail && (
+                                        <Image
+                                            src={work.thumbnail}
+                                            alt={title}
+                                            fill
+                                            sizes="
+                                                (max-width: 640px) 100vw,
+                                                (max-width: 1024px) 50vw,
+                                                33vw
+                                            "
+                                            className="
+                                                object-cover
+                                                transition-transform
+                                                duration-700
+                                                ease-out
+                                                group-hover:scale-105
+                                            "
+                                        />
                                     )}
+                                </div>
+
+                                <div className="flex items-start justify-between gap-6">
+                                    <div className="flex min-w-0 flex-col">
+                                        <h2
+                                            className="
+                                                text-2xl
+                                                leading-tight
+                                                uppercase
+                                                transition-colors
+                                                duration-300
+                                                group-hover:text-orange-500
+                                            "
+                                        >
+                                            {title}
+                                        </h2>
+
+                                        {work.cliente && (
+                                            <span className="text-sm uppercase">
+                                                {work.cliente}
+                                            </span>
+                                        )}
+                                    </div>
 
                                     {category && (
-                                        <span className="text-sm text-orange-500">
+                                        <span className="shrink-0 text-right text-xs text-orange-500">
                                             {category}
                                         </span>
                                     )}
