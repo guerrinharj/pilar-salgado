@@ -7,10 +7,10 @@ type Props = {
     }>
 }
 
-export default async function TrabalhosPage({
+export default async function PublicidadePage({
     params,
 }: Props) {
     const { locale } = await params
 
-    return <WorksGrid locale={locale} type="todos" />
+    return <WorksGrid locale={locale} type="publicidade" />
 }

@@ -2,6 +2,8 @@
     "nav": {
         "home": "Home",
         "works": "Projects",
+        "streaming": "Streaming",
+        "advertising": "Advertising",
         "contact": "Contact"
     },
     "home": {
