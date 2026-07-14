@@ -41,7 +41,7 @@ export default async function TrabalhosPage({ params }: Props) {
 
     return (
         <main className="min-h-screen px-6 pt-32 pb-24">
-            <section className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <section className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
                 {(works || []).map((work) => {
                     const title =
                         locale === 'pt'
@@ -62,7 +62,7 @@ export default async function TrabalhosPage({ params }: Props) {
                                 <div
                                     className="
                                         relative
-                                        aspect-[4/3]
+                                        aspect-[16/10]
                                         overflow-hidden
                                         bg-neutral-100
                                     "
@@ -73,9 +73,9 @@ export default async function TrabalhosPage({ params }: Props) {
                                             alt={title}
                                             fill
                                             sizes="
-                                                (max-width: 640px) 100vw,
-                                                (max-width: 1024px) 50vw,
-                                                33vw
+                                                (max-width:640px) 100vw,
+                                                (max-width:1280px) 50vw,
+                                                25vw
                                             "
                                             className="
                                                 object-cover
