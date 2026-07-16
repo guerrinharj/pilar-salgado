@@ -31,7 +31,7 @@ export default async function HomePage({ params }: Props) {
             >
                 <div className="w-full">
                     <Image
-                        src="/pilar-salgado.jpeg"
+                        src="/pilar_salgado.png"
                         alt="Pilar Salgado"
                         width={1200}
                         height={1600}
