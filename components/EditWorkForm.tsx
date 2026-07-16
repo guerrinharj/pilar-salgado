@@ -177,7 +177,7 @@ export default function EditWorkForm({ locale, work }: Props) {
             if (error instanceof Error) {
                 setErrorMessage(error.message)
             } else {
-                setErrorMessage('Erro ao editar trabalho.')
+                setErrorMessage('Erro ao editar projeto.')
             }
         } finally {
             setIsSubmitting(false)
@@ -190,7 +190,7 @@ export default function EditWorkForm({ locale, work }: Props) {
             className="max-w-3xl flex flex-col gap-6"
         >
             <h1 className="text-4xl uppercase">
-                {locale === 'pt' ? 'Editar trabalho' : 'Edit work'}
+                {locale === 'pt' ? 'Editar projeto' : 'Edit project'}
             </h1>
 
             <input

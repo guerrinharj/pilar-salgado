@@ -147,7 +147,7 @@ export default function NewWorkForm({ locale }: Props) {
             if (error instanceof Error) {
                 setErrorMessage(error.message)
             } else {
-                setErrorMessage('Erro ao criar trabalho.')
+                setErrorMessage('Erro ao criar projeto.')
             }
         } finally {
             setIsSubmitting(false)
@@ -160,7 +160,7 @@ export default function NewWorkForm({ locale }: Props) {
             className="max-w-3xl flex flex-col gap-6"
         >
             <h1 className="text-4xl">
-                {locale === 'pt' ? 'Novo trabalho' : 'New work'}
+                {locale === 'pt' ? 'Novo Projeto' : 'New Project'}
             </h1>
 
             <input
@@ -276,8 +276,8 @@ export default function NewWorkForm({ locale }: Props) {
                         ? 'Criando...'
                         : 'Creating...'
                     : locale === 'pt'
-                        ? 'Criar trabalho'
-                        : 'Create work'}
+                        ? 'Criar projeto'
+                        : 'Create project'}
             </button>
         </form>
     )
