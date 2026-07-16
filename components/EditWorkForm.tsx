@@ -273,19 +273,6 @@ export default function EditWorkForm({ locale, work }: Props) {
                 />
             </div>
 
-            <div className="flex flex-col gap-2">
-                <label>
-                    {locale === 'pt' ? 'Adicionar imagens' : 'Add images'}
-                </label>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={(event) => setImageFiles(event.target.files)}
-                    className="border border-white px-4 py-3 bg-transparent"
-                />
-            </div>
 
             <div className="flex flex-col gap-2">
                 <label>

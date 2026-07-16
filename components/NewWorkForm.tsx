@@ -229,21 +229,6 @@ export default function NewWorkForm({ locale }: Props) {
                 />
             </div>
 
-            <div className="flex flex-col gap-2">
-                <label>
-                    {locale === 'pt' ? 'Imagens' : 'Images'}
-                </label>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={(event) =>
-                        setImageFiles(event.target.files)
-                    }
-                    className="border border-white px-4 py-3 bg-transparent"
-                />
-            </div>
 
             <div className="flex flex-col gap-2">
                 <label>
