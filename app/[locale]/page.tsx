@@ -74,7 +74,6 @@ export default async function HomePage({ params }: Props) {
 
                                     <br />
                                     <br />
-
                                     <a
                                         href="mailto:pilarsalgado@gmail.com"
                                         className="text-orange-600 hover:underline transition"
