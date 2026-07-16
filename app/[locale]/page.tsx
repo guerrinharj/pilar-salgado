@@ -24,8 +24,7 @@ export default async function HomePage({ params }: Props) {
                     grid-cols-1
                     md:grid-cols-2
                     items-center
-                    gap-12
-                    px-6
+                    gap-12             
                     py-16
                 "
             >
